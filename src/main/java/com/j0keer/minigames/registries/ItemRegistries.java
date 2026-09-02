@@ -15,6 +15,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ItemRegistries {
+    public static final Item SELECTION_WAND;
     public static final Item WHITE_MARKER;
     public static final Item ORANGE_MARKER;
     public static final Item MAGENTA_MARKER;
@@ -36,6 +37,7 @@ public class ItemRegistries {
     public static final Item COOKIE_BOX;
 
     static {
+        SELECTION_WAND = register("selection_wand", new Item((new Item.Settings()).maxCount(1)));
         WHITE_MARKER = register("white_marker", new MarkerItem(BlockRegistries.WHITE_MARKER, (new Item.Settings()).maxCount(16)));
         ORANGE_MARKER = register("orange_marker", new MarkerItem(BlockRegistries.ORANGE_MARKER, (new Item.Settings()).maxCount(16)));
         MAGENTA_MARKER = register("magenta_marker", new MarkerItem(BlockRegistries.MAGENTA_MARKER, (new Item.Settings()).maxCount(16)));

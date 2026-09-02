@@ -6,6 +6,7 @@ import com.j0keer.minigames.blocks.MineBlock;
 import com.j0keer.minigames.blocks.MineState;
 import com.j0keer.minigames.config.ConfigFile;
 import com.j0keer.minigames.objects.MinesweeperMap;
+import com.j0keer.minigames.registries.ItemRegistries;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
@@ -38,7 +39,7 @@ public class PlayerEvents {
         AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
             if (world.isClient() || hand != Hand.MAIN_HAND) return ActionResult.PASS;
 
-            if (player.getMainHandStack().isOf(Items.WOODEN_AXE) && hasAdminPermission(player)) {
+            if (player.getMainHandStack().isOf(ItemRegistries.SELECTION_WAND) && hasAdminPermission(player)) {
                 setPos1(player.getUuid(), pos);
                 player.sendMessage(Text.literal("§d[Minigames] §aPosición 1 establecida en §e" + pos.getX() + ", " + pos.getY() + ", " + pos.getZ()), false);
                 return ActionResult.SUCCESS;
@@ -52,7 +53,7 @@ public class PlayerEvents {
 
             ItemStack heldItem = player.getMainHandStack();
 
-            if (heldItem.isOf(Items.WOODEN_AXE) && hasAdminPermission(player)) {
+            if (heldItem.isOf(ItemRegistries.SELECTION_WAND) && hasAdminPermission(player)) {
                 BlockPos pos = hitResult.getBlockPos();
                 setPos2(player.getUuid(), pos);
                 player.sendMessage(Text.literal("§d[Minigames] §aPosición 2 establecida en §e" + pos.getX() + ", " + pos.getY() + ", " + pos.getZ()), false);

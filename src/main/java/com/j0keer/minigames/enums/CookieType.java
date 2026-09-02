@@ -38,7 +38,7 @@ public enum CookieType {
 
     public ItemConvertible getCookieItem() {
         return switch (this) {
-            case SOCCER_BALL, CHORIPAN, FERNET, MATE -> ItemRegistries.COOKIE_ITEMS.get(this.name() + "_NORMAL");
+            case SOCCER_BALL, CHORIPAN, FERNET, MATE -> ItemRegistries.COOKIE_ITEMS.get(this.name().toLowerCase() + "_normal");
         };
     }
 }

@@ -11,10 +11,12 @@ import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
+import java.util.stream.Stream;
+
 public class ItemGroupRegistries {
     public static final ItemGroup MINESWEEPER = register("minesweeper",
             new ItemStack(ItemRegistries.WHITE_MARKER),
-            Items.WOODEN_AXE,
+            ItemRegistries.SELECTION_WAND,
             BlockRegistries.MINE_BLOCK,
             ItemRegistries.WHITE_MARKER,
             ItemRegistries.ORANGE_MARKER,
@@ -35,8 +37,11 @@ public class ItemGroupRegistries {
     );
 
     public static final ItemGroup COOKIE = register("cookie",
-            new ItemStack(ItemRegistries.COOKIE_ITEMS.values().stream().findFirst().get()),
-            ItemRegistries.COOKIE_ITEMS.values().toArray(new ItemConvertible[0])
+            new ItemStack(ItemRegistries.COOKIE_BOX),
+            Stream.concat(
+                    Stream.of(ItemRegistries.COOKIE_BOX),
+                    ItemRegistries.COOKIE_ITEMS.values().stream()
+            ).toArray(ItemConvertible[]::new)
     );
 
 
