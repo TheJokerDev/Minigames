@@ -17,6 +17,7 @@ public class ItemGroupRegistries {
                     .icon(() -> new ItemStack(ItemRegistries.WHITE_MARKER))
                     .displayName(Text.translatable("itemGroup.minigames.minigames_group"))
                     .entries((context, entries) -> {
+                        entries.add(BlockRegistries.MINE_BLOCK);
                         entries.add(ItemRegistries.WHITE_MARKER);
                         entries.add(ItemRegistries.ORANGE_MARKER);
                         entries.add(ItemRegistries.MAGENTA_MARKER);

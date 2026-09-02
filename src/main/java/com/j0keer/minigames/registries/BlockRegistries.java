@@ -1,10 +1,11 @@
 package com.j0keer.minigames.registries;
 
 import com.j0keer.minigames.Minigames;
-
 import com.j0keer.minigames.blocks.MarkerBlock;
+import com.j0keer.minigames.blocks.MineBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.MapColor;
 import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.item.BlockItem;
@@ -16,7 +17,7 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 
 public class BlockRegistries {
-
+    public static final Block MINE_BLOCK;
     public static final Block WHITE_MARKER;
     public static final Block ORANGE_MARKER;
     public static final Block MAGENTA_MARKER;
@@ -35,6 +36,7 @@ public class BlockRegistries {
     public static final Block BLACK_MARKER;
 
     static {
+        MINE_BLOCK = registerBlock("mine_block", new MineBlock(AbstractBlock.Settings.copy(Blocks.GRASS_BLOCK).slipperiness(0.99F)));
         WHITE_MARKER = register("white_banner", new MarkerBlock(DyeColor.WHITE, AbstractBlock.Settings.create().mapColor(MapColor.OAK_TAN).solid().instrument(NoteBlockInstrument.BASS).noCollision().strength(1.0F).sounds(BlockSoundGroup.WOOD).burnable()));
         ORANGE_MARKER = register("orange_banner", new MarkerBlock(DyeColor.ORANGE, AbstractBlock.Settings.create().mapColor(MapColor.OAK_TAN).solid().instrument(NoteBlockInstrument.BASS).noCollision().strength(1.0F).sounds(BlockSoundGroup.WOOD).burnable()));
         MAGENTA_MARKER = register("magenta_banner", new MarkerBlock(DyeColor.MAGENTA, AbstractBlock.Settings.create().mapColor(MapColor.OAK_TAN).solid().instrument(NoteBlockInstrument.BASS).noCollision().strength(1.0F).sounds(BlockSoundGroup.WOOD).burnable()));
