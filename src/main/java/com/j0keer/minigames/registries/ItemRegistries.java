@@ -1,9 +1,11 @@
 package com.j0keer.minigames.registries;
 
 import com.j0keer.minigames.Minigames;
+import com.j0keer.minigames.enums.CookieType;
+import com.j0keer.minigames.items.CookieItem;
 import com.j0keer.minigames.items.MarkerItem;
-import java.util.EnumMap;
-import java.util.Map;
+
+import java.util.*;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.component.DataComponentTypes;
@@ -33,6 +35,8 @@ public class ItemRegistries {
     public static final Item RED_MARKER;
     public static final Item BLACK_MARKER;
 
+    public static final HashMap<String, Item> COOKIE_ITEMS = new HashMap<>();
+
     static {
         WHITE_MARKER = register("white_marker", new MarkerItem(BlockRegistries.WHITE_MARKER, (new Item.Settings()).maxCount(16)));
         ORANGE_MARKER = register("orange_marker", new MarkerItem(BlockRegistries.ORANGE_MARKER, (new Item.Settings()).maxCount(16)));
@@ -50,6 +54,11 @@ public class ItemRegistries {
         GREEN_MARKER = register("green_marker", new MarkerItem(BlockRegistries.GREEN_MARKER, (new Item.Settings()).maxCount(16)));
         RED_MARKER = register("red_marker", new MarkerItem(BlockRegistries.RED_MARKER, (new Item.Settings()).maxCount(16)));
         BLACK_MARKER = register("black_marker", new MarkerItem(BlockRegistries.BLACK_MARKER, (new Item.Settings()).maxCount(16)));
+
+        for (CookieType value : CookieType.values()) {
+            COOKIE_ITEMS.put(value.name().toLowerCase(), register(value.name().toLowerCase() + "_cookie", new CookieItem(value, false)));
+            COOKIE_ITEMS.put(value.name().toLowerCase() + "_broken", register(value.name().toLowerCase() + "_cookie_broken", new CookieItem(value, true)));
+        }
     }
 
     private static Item register(String name, Item item) {

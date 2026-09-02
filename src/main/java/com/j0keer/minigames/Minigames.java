@@ -39,6 +39,10 @@ public class Minigames implements ModInitializer {
         });
     }
 
+    private void initNetworking() {
+        
+    }
+
     public static Minigames getInstance() {
         return instance;
     }

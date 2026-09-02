@@ -49,7 +49,7 @@ public class MarkerBlockEntity extends BlockEntity {
     }
 
     public Text getName() {
-        return (Text)(this.customName != null ? this.customName : Text.translatable("block.minecraft.banner"));
+        return this.customName != null ? this.customName : Text.translatable("block.minecraft.banner");
     }
 
     @Nullable
@@ -60,7 +60,7 @@ public class MarkerBlockEntity extends BlockEntity {
     protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.writeNbt(nbt, registryLookup);
         if (!this.patterns.equals(BannerPatternsComponent.DEFAULT)) {
-            nbt.put("patterns", (NbtElement)BannerPatternsComponent.CODEC.encodeStart(registryLookup.getOps(NbtOps.INSTANCE), this.patterns).getOrThrow());
+            nbt.put("patterns", BannerPatternsComponent.CODEC.encodeStart(registryLookup.getOps(NbtOps.INSTANCE), this.patterns).getOrThrow());
         }
 
         if (this.customName != null) {
@@ -105,8 +105,8 @@ public class MarkerBlockEntity extends BlockEntity {
 
     protected void readComponents(BlockEntity.ComponentsAccess components) {
         super.readComponents(components);
-        this.patterns = (BannerPatternsComponent)components.getOrDefault(DataComponentTypes.BANNER_PATTERNS, BannerPatternsComponent.DEFAULT);
-        this.customName = (Text)components.get(DataComponentTypes.CUSTOM_NAME);
+        this.patterns = components.getOrDefault(DataComponentTypes.BANNER_PATTERNS, BannerPatternsComponent.DEFAULT);
+        this.customName = components.get(DataComponentTypes.CUSTOM_NAME);
     }
 
     protected void addComponents(ComponentMap.Builder componentMapBuilder) {

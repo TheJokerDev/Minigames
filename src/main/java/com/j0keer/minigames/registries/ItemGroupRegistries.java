@@ -34,6 +34,8 @@ public class ItemGroupRegistries {
                         entries.add(ItemRegistries.GREEN_MARKER);
                         entries.add(ItemRegistries.RED_MARKER);
                         entries.add(ItemRegistries.BLACK_MARKER);
+
+                        ItemRegistries.COOKIE_ITEMS.values().forEach(entries::add);
                     })
                     .build()
     );

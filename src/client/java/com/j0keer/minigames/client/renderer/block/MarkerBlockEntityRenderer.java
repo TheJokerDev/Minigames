@@ -1,9 +1,8 @@
-package com.j0keer.minigames.client;
+package com.j0keer.minigames.client.renderer.block;
 
 import com.j0keer.minigames.blockentity.MarkerBlockEntity;
 import net.minecraft.block.BannerBlock;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.WallBannerBlock;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.TexturedRenderLayers;

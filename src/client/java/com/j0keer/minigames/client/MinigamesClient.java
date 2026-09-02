@@ -1,5 +1,10 @@
 package com.j0keer.minigames.client;
 
+import com.j0keer.minigames.client.games.CookieGame;
+import com.j0keer.minigames.client.networking.PacketClientManager;
+import com.j0keer.minigames.client.renderer.block.MarkerBlockEntityRenderer;
+import com.j0keer.minigames.client.renderer.entity.MineBlockEntityRenderer;
+import com.j0keer.minigames.client.renderer.item.MarkerItemRenderer;
 import com.j0keer.minigames.registries.BlockRegistries;
 import com.j0keer.minigames.registries.EntityRegistries;
 import com.j0keer.minigames.registries.ItemRegistries;
@@ -41,5 +46,12 @@ public class MinigamesClient implements ClientModInitializer {
                 ItemRegistries.BLACK_MARKER
         };
         for (Item marker : markers) BuiltinItemRendererRegistry.INSTANCE.register(marker, markerItemRenderer);
+
+        initGames();
+        PacketClientManager.register();
+    }
+
+    private static void initGames() {
+        CookieGame.register();
     }
 }

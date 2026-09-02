@@ -7,12 +7,14 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
+import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
 
 public class ConfigFile {
     private final File file;
@@ -24,6 +26,10 @@ public class ConfigFile {
         this.gson = new GsonBuilder().setPrettyPrinting().create();
         this.root = new JsonObject();
         this.load();
+    }
+
+    public ConfigFile(String filePath) {
+        this(new File(FabricLoader.getInstance().getConfigDir().resolve("minigames").toFile(), filePath));
     }
 
     public void load() {

@@ -4,10 +4,14 @@ import com.google.common.collect.Maps;
 import com.j0keer.minigames.registries.BlockRegistries;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+
+import java.util.List;
 import java.util.Map;
 
 import net.minecraft.block.*;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
+import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
@@ -74,5 +78,10 @@ public class MarkerBlock extends AbstractMarkerBlock {
         ROTATION = Properties.ROTATION;
         COLORED_BANNERS = Maps.newHashMap();
         SHAPE = Block.createCuboidShape(4.0F, 0.0F, 4.0F, 12.0F, 16.0F, 12.0F);
+    }
+
+    @Override
+    protected List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
+        return List.of(new ItemStack(getForColor(this.getColor())));
     }
 }

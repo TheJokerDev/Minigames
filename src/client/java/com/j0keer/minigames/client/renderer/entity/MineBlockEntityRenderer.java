@@ -1,4 +1,4 @@
-package com.j0keer.minigames.client;
+package com.j0keer.minigames.client.renderer.entity;
 
 import com.j0keer.minigames.blockentity.MineBlockEntity;
 import com.j0keer.minigames.blocks.MineBlock;

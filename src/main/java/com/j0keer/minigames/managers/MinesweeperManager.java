@@ -61,12 +61,14 @@ public class MinesweeperManager {
         saveMap(map);
     }
 
-    public void removeMap(String id) {
-        if (id == null) return;
+    public boolean removeMap(String id) {
+        if (id == null) return false;
+        if (!this.maps.containsKey(id)) return false;
         this.maps.remove(id);
         ConfigFile mapsConfig = Minigames.getInstance().getConfigManager().getMapsConfig();
         mapsConfig.set("maps." + id, null);
         mapsConfig.save();
+        return true;
     }
 
     public boolean resetMap(String id, MinecraftServer server) {

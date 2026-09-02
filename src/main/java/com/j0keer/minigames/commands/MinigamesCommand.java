@@ -43,6 +43,24 @@ public class MinigamesCommand {
                                         })
                                 )
                         )
+                        .then(CommandManager.literal("removemap")
+                                .then(CommandManager.argument("id", StringArgumentType.string())
+                                        .suggests((context, builder) -> {
+                                            Minigames.getInstance().getMinesweeperManager().getMaps().keySet().forEach(builder::suggest);
+                                            return builder.buildFuture();
+                                        })
+                                        .executes(context -> {
+                                            String mapId = StringArgumentType.getString(context, "id");
+                                            boolean removed = Minigames.getInstance().getMinesweeperManager().removeMap(mapId);
+                                            if (!removed) {
+                                                context.getSource().sendFeedback(() -> Text.literal("§c[Minigames] El mapa §e" + mapId + " §cno existe."), false);
+                                                return 0;
+                                            }
+                                            context.getSource().sendFeedback(() -> Text.literal("§d[Minigames] §aEl mapa §e" + mapId + " §aha sido eliminado."), true);
+                                            return 1;
+                                        })
+                                )
+                        )
                         .then(CommandManager.literal("active")
                                 .then(CommandManager.argument("state", BoolArgumentType.bool())
                                         .executes(context -> {
@@ -56,6 +74,10 @@ public class MinigamesCommand {
                         )
                         .then(CommandManager.literal("reset")
                                 .then(CommandManager.argument("id", StringArgumentType.string())
+                                        .suggests((context, builder) -> {
+                                            Minigames.getInstance().getMinesweeperManager().getMaps().keySet().forEach(builder::suggest);
+                                            return builder.buildFuture();
+                                        })
                                         .executes(context -> {
                                             String mapId = StringArgumentType.getString(context, "id");
                                             boolean reset = Minigames.getInstance().getMinesweeperManager().resetMap(mapId, context.getSource().getServer());

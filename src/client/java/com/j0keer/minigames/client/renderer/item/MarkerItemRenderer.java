@@ -1,5 +1,6 @@
-package com.j0keer.minigames.client;
+package com.j0keer.minigames.client.renderer.item;
 
+import com.j0keer.minigames.client.renderer.block.MarkerBlockEntityRenderer;
 import com.j0keer.minigames.items.MarkerItem;
 import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
 import net.minecraft.client.MinecraftClient;
@@ -15,8 +16,6 @@ import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.BannerPatternsComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DyeColor;
-import net.minecraft.util.math.RotationAxis;
-import org.joml.Quaternionf;
 
 public class MarkerItemRenderer implements BuiltinItemRendererRegistry.DynamicItemRenderer {
     private ModelPart flag;
