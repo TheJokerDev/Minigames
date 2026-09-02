@@ -1,3 +1,5 @@
 {
-  "parent": "minecraft:item/banner"
+  "textures": {
+    "particle": "minecraft:block/oak_planks"
+  }
 }

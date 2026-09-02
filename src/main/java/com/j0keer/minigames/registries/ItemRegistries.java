@@ -34,22 +34,22 @@ public class ItemRegistries {
     public static final Item BLACK_MARKER;
 
     static {
-        WHITE_MARKER = register("white_banner", new MarkerItem(BlockRegistries.WHITE_MARKER, (new Item.Settings()).maxCount(16)));
-        ORANGE_MARKER = register("orange_banner", new MarkerItem(BlockRegistries.ORANGE_MARKER, (new Item.Settings()).maxCount(16)));
-        MAGENTA_MARKER = register("magenta_banner", new MarkerItem(BlockRegistries.MAGENTA_MARKER, (new Item.Settings()).maxCount(16)));
-        LIGHT_BLUE_MARKER = register("light_blue_banner", new MarkerItem(BlockRegistries.LIGHT_BLUE_MARKER, (new Item.Settings()).maxCount(16)));
-        YELLOW_MARKER = register("yellow_banner", new MarkerItem(BlockRegistries.YELLOW_MARKER, (new Item.Settings()).maxCount(16)));
-        LIME_MARKER = register("lime_banner", new MarkerItem(BlockRegistries.LIME_MARKER, (new Item.Settings()).maxCount(16)));
-        PINK_MARKER = register("pink_banner", new MarkerItem(BlockRegistries.PINK_MARKER, (new Item.Settings()).maxCount(16)));
-        GRAY_MARKER = register("gray_banner", new MarkerItem(BlockRegistries.GRAY_MARKER, (new Item.Settings()).maxCount(16)));
-        LIGHT_GRAY_MARKER = register("light_gray_banner", new MarkerItem(BlockRegistries.LIGHT_GRAY_MARKER, (new Item.Settings()).maxCount(16)));
-        CYAN_MARKER = register("cyan_banner", new MarkerItem(BlockRegistries.CYAN_MARKER, (new Item.Settings()).maxCount(16)));
-        PURPLE_MARKER = register("purple_banner", new MarkerItem(BlockRegistries.PURPLE_MARKER, (new Item.Settings()).maxCount(16)));
-        BLUE_MARKER = register("blue_banner", new MarkerItem(BlockRegistries.BLUE_MARKER, (new Item.Settings()).maxCount(16)));
-        BROWN_MARKER = register("brown_banner", new MarkerItem(BlockRegistries.BROWN_MARKER, (new Item.Settings()).maxCount(16)));
-        GREEN_MARKER = register("green_banner", new MarkerItem(BlockRegistries.GREEN_MARKER, (new Item.Settings()).maxCount(16)));
-        RED_MARKER = register("red_banner", new MarkerItem(BlockRegistries.RED_MARKER, (new Item.Settings()).maxCount(16)));
-        BLACK_MARKER = register("black_banner", new MarkerItem(BlockRegistries.BLACK_MARKER, (new Item.Settings()).maxCount(16)));
+        WHITE_MARKER = register("white_marker", new MarkerItem(BlockRegistries.WHITE_MARKER, (new Item.Settings()).maxCount(16)));
+        ORANGE_MARKER = register("orange_marker", new MarkerItem(BlockRegistries.ORANGE_MARKER, (new Item.Settings()).maxCount(16)));
+        MAGENTA_MARKER = register("magenta_marker", new MarkerItem(BlockRegistries.MAGENTA_MARKER, (new Item.Settings()).maxCount(16)));
+        LIGHT_BLUE_MARKER = register("light_blue_marker", new MarkerItem(BlockRegistries.LIGHT_BLUE_MARKER, (new Item.Settings()).maxCount(16)));
+        YELLOW_MARKER = register("yellow_marker", new MarkerItem(BlockRegistries.YELLOW_MARKER, (new Item.Settings()).maxCount(16)));
+        LIME_MARKER = register("lime_marker", new MarkerItem(BlockRegistries.LIME_MARKER, (new Item.Settings()).maxCount(16)));
+        PINK_MARKER = register("pink_marker", new MarkerItem(BlockRegistries.PINK_MARKER, (new Item.Settings()).maxCount(16)));
+        GRAY_MARKER = register("gray_marker", new MarkerItem(BlockRegistries.GRAY_MARKER, (new Item.Settings()).maxCount(16)));
+        LIGHT_GRAY_MARKER = register("light_gray_marker", new MarkerItem(BlockRegistries.LIGHT_GRAY_MARKER, (new Item.Settings()).maxCount(16)));
+        CYAN_MARKER = register("cyan_marker", new MarkerItem(BlockRegistries.CYAN_MARKER, (new Item.Settings()).maxCount(16)));
+        PURPLE_MARKER = register("purple_marker", new MarkerItem(BlockRegistries.PURPLE_MARKER, (new Item.Settings()).maxCount(16)));
+        BLUE_MARKER = register("blue_marker", new MarkerItem(BlockRegistries.BLUE_MARKER, (new Item.Settings()).maxCount(16)));
+        BROWN_MARKER = register("brown_marker", new MarkerItem(BlockRegistries.BROWN_MARKER, (new Item.Settings()).maxCount(16)));
+        GREEN_MARKER = register("green_marker", new MarkerItem(BlockRegistries.GREEN_MARKER, (new Item.Settings()).maxCount(16)));
+        RED_MARKER = register("red_marker", new MarkerItem(BlockRegistries.RED_MARKER, (new Item.Settings()).maxCount(16)));
+        BLACK_MARKER = register("black_marker", new MarkerItem(BlockRegistries.BLACK_MARKER, (new Item.Settings()).maxCount(16)));
     }
 
     private static Item register(String name, Item item) {
