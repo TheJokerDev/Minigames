@@ -15,13 +15,13 @@ public class CookieGameServerHandler {
                 CookieType type = CookieType.valueOf(payload.data().toUpperCase());
                 var action = payload.action().toLowerCase();
                 switch (action) {
-                    case "broken", "completed" -> register(context.player(), type, action.equals("completed"));
+                    case "broken", "completed" -> handlePacket(context.player(), type, action.equals("completed"));
                 }
             });
         });
     }
 
-    private static void register(ServerPlayerEntity player, CookieType type, boolean completed) {
+    private static void handlePacket(ServerPlayerEntity player, CookieType type, boolean completed) {
         var replacement = ItemRegistries.COOKIE_ITEMS.get(type.name().toLowerCase() + "_" + (completed ? "completed" : "broken"));
         for (int slot = 0; slot < player.getInventory().size(); slot++) {
             ItemStack stack = player.getInventory().getStack(slot);
