@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "minigames:block/marker_wall" },
+    "facing=south": { "model": "minigames:block/marker_wall", "y": 180 },
+    "facing=west": { "model": "minigames:block/marker_wall", "y": 270 },
+    "facing=east": { "model": "minigames:block/marker_wall", "y": 90 }
+  }
+}

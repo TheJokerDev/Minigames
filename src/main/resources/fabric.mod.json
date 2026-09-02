@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "minigames",
+  "version": "${version}",
+  "name": "Minigames",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/minigames/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "com.j0keer.minigames.client.MinigamesClient"
+    ],
+    "main": [
+      "com.j0keer.minigames.Minigames"
+    ]
+  },
+  "mixins": [
+    "minigames.mixins.json",
+    {
+      "config": "minigames.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
