@@ -1,0 +1,10 @@
+{
+  "crunch": {
+    "sounds": [
+      "minigames:crunch_1",
+      "minigames:crunch_2",
+      "minigames:crunch_3",
+      "minigames:crunch_4"
+    ]
+  }
+}

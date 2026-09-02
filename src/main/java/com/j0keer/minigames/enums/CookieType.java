@@ -1,12 +1,14 @@
 package com.j0keer.minigames.enums;
 
+import com.j0keer.minigames.registries.ItemRegistries;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.util.Identifier;
 
 public enum CookieType {
-    SOCCER_BALL("minigames:textures/cookies/%s/soccer_ball.png"),
-    CHORIPAN("minigames:textures/cookies/%s/choripan.png"),
-    FERNET("minigames:textures/cookies/%s/fernet.png"),
-    MATE("minigames:textures/cookies/%s/mate.png"),;
+    SOCCER_BALL("minigames:textures/item/soccer_ball_cookie_%s.png"),
+    CHORIPAN("minigames:textures/item/choripan_cookie_%s.png"),
+    FERNET("minigames:textures/item/fernet_cookie_%s.png"),
+    MATE("minigames:textures/item/mate_cookie_%s.png");
 
     String texture;
     String selected;
@@ -32,5 +34,11 @@ public enum CookieType {
 
     public Identifier getID() {
         return Identifier.of(selected);
+    }
+
+    public ItemConvertible getCookieItem() {
+        return switch (this) {
+            case SOCCER_BALL, CHORIPAN, FERNET, MATE -> ItemRegistries.COOKIE_ITEMS.get(this.name() + "_NORMAL");
+        };
     }
 }

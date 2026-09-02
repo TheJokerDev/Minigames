@@ -9,6 +9,8 @@ import com.j0keer.minigames.enums.CookieState;
 import com.j0keer.minigames.client.objects.cookie.ParticleManager;
 import com.j0keer.minigames.client.objects.screen.ScreenVibration;
 import com.j0keer.minigames.config.ConfigFile;
+import com.j0keer.minigames.networking.CookieGamePayload;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
@@ -43,27 +45,29 @@ public class CookieScreen extends Screen {
         this.paintedPixels = new HashMap<>();
         this.break_colors = new HashMap<>();
 
-        // 1. Cargar y parsear el JSON (desde resources del mod)
         JsonObject rootJson = config.getRoot();
 
         if (rootJson != null) {
-            // 2. Cargar píxeles por defecto del tipo de galleta
             this.default_pixels = getListFromJson(rootJson, cookieType.name());
             for (String pixel : default_pixels) {
                 paintedPixels.put(pixel, 1.0f);
             }
 
-            // 3. Cargar las etapas de rotura
             this.break_1 = getListFromJson(rootJson, "break_1");
             this.break_2 = getListFromJson(rootJson, "break_2");
             this.break_3 = getListFromJson(rootJson, "break_3");
 
-            // 4. Asignar los colores
             int color = 0xffa56021;
             applyBreakColors(break_1, color);
             applyBreakColors(break_2, color);
             applyBreakColors(break_3, color);
         }
+    }
+
+    public CookieScreen(CookieType type, CookieState state) {
+        this(type);
+
+        this.state = state;
     }
 
     private List<String> getListFromJson(JsonObject json, String key) {
@@ -224,7 +228,7 @@ public class CookieScreen extends Screen {
                     lastKey = key;
 
                     if (paintedPixels.containsKey(key)) {
-                        playSound("crunch", ThreadLocalRandom.current().nextFloat(0.5f, 1.3f), 0.1f);
+                        playSound(ThreadLocalRandom.current().nextFloat(0.5f, 1.3f));
                         float opacity = paintedPixels.get(key) - 0.03f;
                         if (opacity <= 0.5f) {
                             paintedPixels.remove(key);
@@ -233,14 +237,14 @@ public class CookieScreen extends Screen {
                         }
 
                         if (paintedPixels.isEmpty()) {
-                            win();
+                            setResult(true);
                         }
-                        particleManager.addParticle((int) mouseX, (int) mouseY, modifyColor(0xff7e3a09));
+                        particleManager.addParticle((int) mouseX, (int) mouseY, modifyColor());
                     } else if (!default_pixels.contains(key)) {
                         fails++;
                         screenVibration.startVibration(0.2f, 4);
                         if (fails >= 13) {
-                            fail();
+                            setResult(false);
                         }
                     }
                 }
@@ -249,29 +253,24 @@ public class CookieScreen extends Screen {
         return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
     }
 
-    private int modifyColor(int baseColor) {
-        int alpha = (baseColor >> 24) & 0xFF;
-        int red = (baseColor >> 16) & 0xFF;
-        int green = (baseColor >> 8) & 0xFF;
-        int blue = baseColor & 0xFF;
+    private int modifyColor() {
+        int alpha = (-8504823 >> 24) & 0xFF;
+        int red = (-8504823 >> 16) & 0xFF;
+        int green = (-8504823 >> 8) & 0xFF;
+        int blue = -8504823 & 0xFF;
 
         float factor = 0.5f + (ThreadLocalRandom.current().nextFloat() * 0.8f);
 
-        red = Math.min(255, Math.max(0, (int) (red * factor)));
-        green = Math.min(255, Math.max(0, (int) (green * factor)));
-        blue = Math.min(255, Math.max(0, (int) (blue * factor)));
+        red = Math.clamp((int) (red * factor), 0, 255);
+        green = Math.clamp((int) (green * factor), 0, 255);
+        blue = Math.clamp((int) (blue * factor), 0, 255);
 
         return (alpha << 24) | (red << 16) | (green << 8) | blue;
     }
 
-    private void win() {
-        state = CookieState.COMPLETED;
-        runCommand("wiigane");
-    }
-
-    private void fail() {
-        state = CookieState.BROKEN;
-        runCommand("ayperdi");
+    private void setResult(boolean win) {
+        state = win ? CookieState.COMPLETED : CookieState.BROKEN;
+        ClientPlayNetworking.send(new CookieGamePayload(state.name().toLowerCase(), cookieType.name().toLowerCase()));
     }
 
     @Override
@@ -279,8 +278,8 @@ public class CookieScreen extends Screen {
 
     }
 
-    private void playSound(String sound, float pitch, float volume) {
-        MinecraftClient.getInstance().getSoundManager().play(PositionedSoundInstance.master(SoundEvent.of(Identifier.of(Constants.MOD_ID, sound)), pitch, volume));
+    private void playSound(float pitch) {
+        MinecraftClient.getInstance().getSoundManager().play(PositionedSoundInstance.master(SoundEvent.of(Identifier.of(Constants.MOD_ID, "crunch")), pitch, (float) 0.1));
     }
 
     @Override
@@ -290,9 +289,7 @@ public class CookieScreen extends Screen {
         particleManager.update();
     }
 
-    private void runCommand(String command) {
-        assert Objects.requireNonNull(client).player != null;
-        assert client.player != null;
-        client.player.networkHandler.sendChatCommand(command);
+    public CookieState getState() {
+        return state;
     }
 }

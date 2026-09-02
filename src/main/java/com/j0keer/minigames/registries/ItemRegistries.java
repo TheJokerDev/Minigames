@@ -3,6 +3,7 @@ package com.j0keer.minigames.registries;
 import com.j0keer.minigames.Minigames;
 import com.j0keer.minigames.enums.CookieState;
 import com.j0keer.minigames.enums.CookieType;
+import com.j0keer.minigames.items.CookieBoxItem;
 import com.j0keer.minigames.items.CookieItem;
 import com.j0keer.minigames.items.MarkerItem;
 
@@ -32,6 +33,7 @@ public class ItemRegistries {
     public static final Item BLACK_MARKER;
 
     public static final HashMap<String, Item> COOKIE_ITEMS = new HashMap<>();
+    public static final Item COOKIE_BOX;
 
     static {
         WHITE_MARKER = register("white_marker", new MarkerItem(BlockRegistries.WHITE_MARKER, (new Item.Settings()).maxCount(16)));
@@ -56,6 +58,7 @@ public class ItemRegistries {
                 COOKIE_ITEMS.put(value.name().toLowerCase() + "_" + state.name().toLowerCase(), register(value.name().toLowerCase() + "_cookie_" + state.name().toLowerCase(), state == CookieState.COMPLETED ? new CookieItem(value, state, true) : new CookieItem(value, state)));
             }
         }
+        COOKIE_BOX = register("cookie_box", new CookieBoxItem());
     }
 
     private static Item register(String name, Item item) {

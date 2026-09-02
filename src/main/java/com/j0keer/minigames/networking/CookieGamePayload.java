@@ -17,7 +17,7 @@ public record CookieGamePayload(String action, String data) implements CustomPay
 
     @Override
     public Id<? extends CustomPayload> getId() {
-        return null;
+        return ID;
     }
 
     private CookieGamePayload(PacketByteBuf buf) {
