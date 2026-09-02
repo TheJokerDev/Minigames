@@ -11,7 +11,25 @@ public class EntityRegistries {
     public static final BlockEntityType<MarkerBlockEntity> MARKER = Registry.register(
             Registries.BLOCK_ENTITY_TYPE,
             Identifier.of(Minigames.MOD_ID, "marker"),
-            BlockEntityType.Builder.create(MarkerBlockEntity::new, BlockRegistries.WHITE_MARKER).build()
+            BlockEntityType.Builder.create(
+                    MarkerBlockEntity::new,
+                    BlockRegistries.WHITE_MARKER,
+                    BlockRegistries.ORANGE_MARKER,
+                    BlockRegistries.MAGENTA_MARKER,
+                    BlockRegistries.LIGHT_BLUE_MARKER,
+                    BlockRegistries.YELLOW_MARKER,
+                    BlockRegistries.LIME_MARKER,
+                    BlockRegistries.PINK_MARKER,
+                    BlockRegistries.GRAY_MARKER,
+                    BlockRegistries.LIGHT_GRAY_MARKER,
+                    BlockRegistries.CYAN_MARKER,
+                    BlockRegistries.PURPLE_MARKER,
+                    BlockRegistries.BLUE_MARKER,
+                    BlockRegistries.BROWN_MARKER,
+                    BlockRegistries.GREEN_MARKER,
+                    BlockRegistries.RED_MARKER,
+                    BlockRegistries.BLACK_MARKER
+            ).build()
     );
 
     public static void registerModEntities() {
