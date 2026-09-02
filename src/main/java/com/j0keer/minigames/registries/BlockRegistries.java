@@ -61,7 +61,6 @@ public class BlockRegistries {
     }
 
     private static MarkerBlock register(String name, MarkerBlock block) {
-        registerBlockItem(name, block);
         return Registry.register(Registries.BLOCK, Identifier.of(Minigames.MOD_ID, name), block);
     }
 
