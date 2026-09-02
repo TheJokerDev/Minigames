@@ -16,5 +16,19 @@
   "block.minigames.green_marker": "Green Marker",
   "block.minigames.red_marker": "Red Marker",
   "block.minigames.black_marker": "Black Marker",
-  "block.minigames.mine_block": "Mine Block"
+  "block.minigames.mine_block": "Mine Block",
+
+  "item.minigames.mate_cookie_normal": "Mate Cookie",
+  "item.minigames.mate_cookie_completed": "Mate Cookie (Completed)",
+  "item.minigames.mate_cookie_broken": "Mate Cookie (Broken)",
+  "item.minigames.soccer_ball_cookie_normal": "Soccer Ball Cookie",
+  "item.minigames.soccer_ball_cookie_completed": "Soccer Ball Cookie (Completed)",
+  "item.minigames.soccer_ball_cookie_broken": "Soccer Ball Cookie (Broken)",
+  "item.minigames.fernet_cookie_normal": "Fernet Cookie",
+  "item.minigames.fernet_cookie_completed": "Fernet Cookie (Completed)",
+  "item.minigames.fernet_cookie_broken": "Fernet Cookie (Broken)",
+  "item.minigames.choripan_cookie_normal": "Choripan Cookie",
+  "item.minigames.choripan_cookie_completed": "Choripan Cookie (Completed)",
+  "item.minigames.choripan_cookie_broken": "Choripan Cookie (Broken)"
+
 }

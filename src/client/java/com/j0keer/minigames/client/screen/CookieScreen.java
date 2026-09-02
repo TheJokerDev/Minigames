@@ -5,7 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.j0keer.minigames.Constants;
 import com.j0keer.minigames.enums.CookieType;
-import com.j0keer.minigames.client.objects.cookie.CookieState;
+import com.j0keer.minigames.enums.CookieState;
 import com.j0keer.minigames.client.objects.cookie.ParticleManager;
 import com.j0keer.minigames.client.objects.screen.ScreenVibration;
 import com.j0keer.minigames.config.ConfigFile;
@@ -33,7 +33,7 @@ public class CookieScreen extends Screen {
     private List<String> break_2;
     private List<String> break_3;
     private final Map<String, Integer> break_colors;
-    private CookieState state = CookieState.PLAYING;
+    private CookieState state = CookieState.NORMAL;
 
     public CookieScreen(CookieType type) {
         super(Text.literal("cookie.game.screen"));
@@ -99,7 +99,7 @@ public class CookieScreen extends Screen {
         int cookieY = (int) (((float) height / 2) - ((float) cookieHeight / 2) + vibrationY);
 
         switch (state) {
-            case PLAYING -> {
+            case NORMAL -> {
                 context.drawTexture(cookie, cookieX, cookieY, 0, 0, cookieWidth, cookieHeight, cookieWidth, cookieHeight);
 
                 float blockSizeX = (float) cookieWidth / 37.0f;
@@ -174,11 +174,11 @@ public class CookieScreen extends Screen {
 
                 }
             }
-            case WINNER -> {
+            case COMPLETED -> {
                 cookie = cookieType.getCompleted().getID();
                 context.drawTexture(cookie, cookieX, cookieY, 0, 0, cookieWidth, cookieHeight, cookieWidth, cookieHeight);
             }
-            case LOSER -> {
+            case BROKEN -> {
                 cookie = cookieType.getBroken().getID();
                 context.drawTexture(cookie, cookieX, cookieY, 0, 0, cookieWidth, cookieHeight, cookieWidth, cookieHeight);
             }
@@ -206,7 +206,7 @@ public class CookieScreen extends Screen {
 
     @Override
     public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
-        if (drawing && button == 0 && (state != CookieState.LOSER && state != CookieState.WINNER)) {
+        if (drawing && button == 0 && (state != CookieState.BROKEN && state != CookieState.COMPLETED)) {
             float cookieWidth = (float) (Math.min(height, width) * 0.8);
             float cookieHeight = (float) (Math.min(height, width) * 0.8);
             float cookieX = ((float) width / 2) - (cookieWidth / 2);
@@ -265,12 +265,12 @@ public class CookieScreen extends Screen {
     }
 
     private void win() {
-        state = CookieState.WINNER;
+        state = CookieState.COMPLETED;
         runCommand("wiigane");
     }
 
     private void fail() {
-        state = CookieState.LOSER;
+        state = CookieState.BROKEN;
         runCommand("ayperdi");
     }
 

@@ -4,6 +4,7 @@ import com.j0keer.minigames.commands.MinigamesCommand;
 import com.j0keer.minigames.config.ConfigManager;
 import com.j0keer.minigames.events.PlayerEvents;
 import com.j0keer.minigames.managers.MinesweeperManager;
+import com.j0keer.minigames.networking.PacketManager;
 import com.j0keer.minigames.registries.BlockRegistries;
 import com.j0keer.minigames.registries.EntityRegistries;
 import com.j0keer.minigames.registries.ItemGroupRegistries;
@@ -33,6 +34,7 @@ public class Minigames implements ModInitializer {
         ItemGroupRegistries.registerModItemGroups();
 
         PlayerEvents.register();
+        initNetworking();
 
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             MinigamesCommand.register(dispatcher);
@@ -40,7 +42,7 @@ public class Minigames implements ModInitializer {
     }
 
     private void initNetworking() {
-        
+        PacketManager.register();
     }
 
     public static Minigames getInstance() {

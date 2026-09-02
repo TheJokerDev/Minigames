@@ -1,20 +1,16 @@
 package com.j0keer.minigames.registries;
 
 import com.j0keer.minigames.Minigames;
+import com.j0keer.minigames.enums.CookieState;
 import com.j0keer.minigames.enums.CookieType;
 import com.j0keer.minigames.items.CookieItem;
 import com.j0keer.minigames.items.MarkerItem;
 
 import java.util.*;
 
-import net.minecraft.block.Blocks;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.BannerPatternsComponent;
-import net.minecraft.item.BannerItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 
 public class ItemRegistries {
@@ -56,8 +52,9 @@ public class ItemRegistries {
         BLACK_MARKER = register("black_marker", new MarkerItem(BlockRegistries.BLACK_MARKER, (new Item.Settings()).maxCount(16)));
 
         for (CookieType value : CookieType.values()) {
-            COOKIE_ITEMS.put(value.name().toLowerCase(), register(value.name().toLowerCase() + "_cookie", new CookieItem(value, false)));
-            COOKIE_ITEMS.put(value.name().toLowerCase() + "_broken", register(value.name().toLowerCase() + "_cookie_broken", new CookieItem(value, true)));
+            for (CookieState state : CookieState.values()) {
+                COOKIE_ITEMS.put(value.name().toLowerCase() + "_" + state.name().toLowerCase(), register(value.name().toLowerCase() + "_cookie_" + state.name().toLowerCase(), state == CookieState.COMPLETED ? new CookieItem(value, state, true) : new CookieItem(value, state)));
+            }
         }
     }
 
