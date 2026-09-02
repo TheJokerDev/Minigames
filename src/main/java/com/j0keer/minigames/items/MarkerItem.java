@@ -1,23 +1,30 @@
 package com.j0keer.minigames.items;
 
+import com.j0keer.minigames.blocks.AbstractMarkerBlock;
 import com.j0keer.minigames.registries.BlockRegistries;
+import net.minecraft.block.AbstractBannerBlock;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.BannerPatternsComponent;
+import net.minecraft.item.*;
+import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.DyeColor;
+import net.minecraft.util.Formatting;
+import net.minecraft.util.math.Direction;
+import org.apache.commons.lang3.Validate;
 
-public class MarkerItem extends BlockItem {
-    private final DyeColor color;
+import java.util.List;
 
-    public MarkerItem(DyeColor color, Settings settings) {
-        super(BlockRegistries.MARKERS.get(color), settings);
-        this.color = color;
+public class MarkerItem extends VerticallyAttachableBlockItem {
+    public MarkerItem(Block bannerBlock, Item.Settings settings) {
+        super(bannerBlock, bannerBlock, settings, Direction.DOWN);
+        Validate.isInstanceOf(AbstractMarkerBlock.class, bannerBlock);
     }
 
-    @Override
-    public ActionResult place(ItemPlacementContext context) {
-        return super.place(context);
+    public DyeColor getColor() {
+        return ((AbstractMarkerBlock)this.getBlock()).getColor();
     }
 }

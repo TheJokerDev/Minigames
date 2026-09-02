@@ -1,6 +1,7 @@
 package com.j0keer.minigames.blocks;
 
 import com.google.common.collect.Maps;
+import com.j0keer.minigames.registries.BlockRegistries;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import java.util.Map;
@@ -66,7 +67,7 @@ public class MarkerBlock extends AbstractMarkerBlock {
     }
 
     public static Block getForColor(DyeColor color) {
-        return COLORED_BANNERS.getOrDefault(color, Blocks.WHITE_BANNER);
+        return COLORED_BANNERS.getOrDefault(color, BlockRegistries.WHITE_MARKER);
     }
 
     static {

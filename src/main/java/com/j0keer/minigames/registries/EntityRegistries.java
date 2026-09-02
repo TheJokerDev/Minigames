@@ -11,7 +11,7 @@ public class EntityRegistries {
     public static final BlockEntityType<MarkerBlockEntity> MARKER = Registry.register(
             Registries.BLOCK_ENTITY_TYPE,
             Identifier.of(Minigames.MOD_ID, "marker"),
-            BlockEntityType.Builder.create(MarkerBlockEntity::new, BlockRegistries.MARKERS.values().iterator().next()).build()
+            BlockEntityType.Builder.create(MarkerBlockEntity::new, BlockRegistries.WHITE_MARKER).build()
     );
 
     public static void registerModEntities() {

@@ -14,10 +14,25 @@ public class ItemGroupRegistries {
             Registries.ITEM_GROUP,
             Identifier.of(Minigames.MOD_ID, "minigames_group"),
             FabricItemGroup.builder()
-                    .icon(() -> new ItemStack(ItemRegistries.MARKER))
+                    .icon(() -> new ItemStack(ItemRegistries.WHITE_MARKER))
                     .displayName(Text.translatable("itemGroup.minigames.minigames_group"))
                     .entries((context, entries) -> {
-                        entries.add(ItemRegistries.MARKER);
+                        entries.add(ItemRegistries.WHITE_MARKER);
+                        entries.add(ItemRegistries.ORANGE_MARKER);
+                        entries.add(ItemRegistries.MAGENTA_MARKER);
+                        entries.add(ItemRegistries.LIGHT_BLUE_MARKER);
+                        entries.add(ItemRegistries.YELLOW_MARKER);
+                        entries.add(ItemRegistries.LIME_MARKER);
+                        entries.add(ItemRegistries.PINK_MARKER);
+                        entries.add(ItemRegistries.GRAY_MARKER);
+                        entries.add(ItemRegistries.LIGHT_GRAY_MARKER);
+                        entries.add(ItemRegistries.CYAN_MARKER);
+                        entries.add(ItemRegistries.PURPLE_MARKER);
+                        entries.add(ItemRegistries.BLUE_MARKER);
+                        entries.add(ItemRegistries.BROWN_MARKER);
+                        entries.add(ItemRegistries.GREEN_MARKER);
+                        entries.add(ItemRegistries.RED_MARKER);
+                        entries.add(ItemRegistries.BLACK_MARKER);
                     })
                     .build()
     );
