@@ -5,10 +5,7 @@ import com.j0keer.minigames.config.ConfigManager;
 import com.j0keer.minigames.events.PlayerEvents;
 import com.j0keer.minigames.managers.MinesweeperManager;
 import com.j0keer.minigames.networking.PacketManager;
-import com.j0keer.minigames.registries.BlockRegistries;
-import com.j0keer.minigames.registries.EntityRegistries;
-import com.j0keer.minigames.registries.ItemGroupRegistries;
-import com.j0keer.minigames.registries.ItemRegistries;
+import com.j0keer.minigames.registries.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 
@@ -32,6 +29,7 @@ public class Minigames implements ModInitializer {
         ItemRegistries.registerModItems();
         EntityRegistries.registerModEntities();
         ItemGroupRegistries.registerModItemGroups();
+        ParticleRegistries.register();
 
         PlayerEvents.register();
         initNetworking();

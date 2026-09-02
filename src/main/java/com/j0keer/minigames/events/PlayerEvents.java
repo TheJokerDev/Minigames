@@ -137,6 +137,7 @@ public class PlayerEvents {
 
                     world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 1.0f, 1.0f);
                     world.spawnParticles(ParticleTypes.EXPLOSION_EMITTER, player.getX(), player.getY(), player.getZ(), 1, 0, 0, 0, 0);
+                    server.getPlayerManager().broadcast(Text.of("[death]" + player.getName().getLiteralString()), false);
                     player.kill();
                 } else if (!map.hasMine(floorPos)) {
                     int count = map.countSurroundingMines(floorPos);

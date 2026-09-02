@@ -2,14 +2,17 @@ package com.j0keer.minigames.client;
 
 import com.j0keer.minigames.client.games.CookieGame;
 import com.j0keer.minigames.client.networking.PacketClientManager;
+import com.j0keer.minigames.client.particles.DeathParticle;
 import com.j0keer.minigames.client.renderer.block.MarkerBlockEntityRenderer;
 import com.j0keer.minigames.client.renderer.entity.MineBlockEntityRenderer;
 import com.j0keer.minigames.client.renderer.item.MarkerItemRenderer;
 import com.j0keer.minigames.registries.BlockRegistries;
 import com.j0keer.minigames.registries.EntityRegistries;
 import com.j0keer.minigames.registries.ItemRegistries;
+import com.j0keer.minigames.registries.ParticleRegistries;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.minecraft.client.color.world.BiomeColors;
@@ -47,11 +50,17 @@ public class MinigamesClient implements ClientModInitializer {
         };
         for (Item marker : markers) BuiltinItemRendererRegistry.INSTANCE.register(marker, markerItemRenderer);
 
+        registerParticles();
+
         initGames();
         PacketClientManager.register();
     }
 
-    private static void initGames() {
+    private void registerParticles() {
+        ParticleFactoryRegistry.getInstance().register(ParticleRegistries.DEATH_PARTICLE, DeathParticle.Factory::new);
+    }
+
+    private void initGames() {
         CookieGame.register();
     }
 }
