@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "minigames:textures/cookies/broken/soccer_ball"
+    "layer0": "minigames:item/soccer_ball_cookie_broken"
   }
 }

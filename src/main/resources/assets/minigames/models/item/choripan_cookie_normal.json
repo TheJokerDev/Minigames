@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "minigames:textures/cookies/normal/choripan"
+    "layer0": "minigames:item/choripan_cookie_normal"
   }
 }
